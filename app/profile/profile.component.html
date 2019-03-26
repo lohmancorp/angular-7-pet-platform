@@ -1,0 +1,140 @@
+
+    <div class="row">
+  		<div class="col-sm-12 component-header"><h2> {{currentUser.firstName}} {{currentUser.lastName}}</h2></div>
+
+    </div>
+    <div class="row">
+  		<div class="col-sm-2"><!--left col-->
+
+
+      <div class="text-center">
+        <img class="rounded-circle" src="{{currentUser.image}}" width="150" height="150" alt="avatar"><br>
+        <small class="muted">Upload a different photo...</small>
+        <input type="file" id="file" class="text-center center-block file-upload">
+      </div><br>
+          <ul class="list-group">
+            <li class="list-group-item text-muted"><fa-icon [icon]="['fas', 'users']"></fa-icon>  - Group</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Team</strong></span> {{currentUser.team}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Website</strong></span>  <a href="https://{{currentUser.website}}" target="_blank"> {{currentUser.website}}</a></li>
+          </ul>
+
+          <br>
+
+          <ul class="list-group">
+            <li class="list-group-item text-muted"><fa-icon [icon]="['fas', 'chart-line']"></fa-icon>  - Activity</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Customers</strong></span> 125</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Solutions</strong></span> 13</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Deals</strong></span> 37</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Running Total</strong></span> $10,178,000.00</li>
+          </ul>
+
+        </div><!--/col-3-->
+
+      <div class="col-sm-8">
+        <ngb-tabset>
+          <ngb-tab title="Profile Settings">
+            <ng-template ngbTabContent>
+              <br>
+                  <form class="form" action="##" method="post" id="registrationForm">
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="first_name"><h4>First name</h4></label>
+                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="{{currentUser.firstName}}" title="enter your first name if any.">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                            <label for="last_name"><h4>Last name</h4></label>
+                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="{{currentUser.lastName}}" title="enter your last name if any.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="phone"><h4>Phone</h4></label>
+                              <input type="text" class="form-control" name="phone" id="phone" placeholder="{{currentUser.phone}}" title="enter your phone number if any.">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-xs-6">
+                             <label for="mobile"><h4>Mobile</h4></label>
+                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="{{currentUser.mobile}}" title="enter your mobile number if any.">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="email"><h4>Email</h4></label>
+                              <input type="email" class="form-control" name="email" id="email" placeholder="{{currentUser.email}}" title="enter your email.">
+                          </div>
+                      </div>
+                      <div class="form-group">
+
+                          <div class="col-xs-6">
+                              <label for="email"><h4>Location</h4></label>
+                              <input type="email" class="form-control" id="location" placeholder="{{currentUser.location}}" title="enter a location">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                           <div class="row col-xs-12">
+                                <br>
+                                <div class="col-md-1">
+                              	  <button class="btn btn-lg btn-outline-primary btn-sm" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                </div>
+                                <div class="col-md-1">
+                              	  <button class="btn btn-sm" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                </div>
+                            </div>
+                      </div>
+              	</form>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab>
+            <ng-template ngbTabTitle> Account Settings</ng-template>
+            <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+              <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+              craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+              cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
+              yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
+              shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
+              sint qui sapiente accusamus tattooed echo park.</p>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Dashboard">
+            <ng-template ngbTabContent>
+              <p>Dashboard goes here</p>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Customers">
+            <ng-template ngbTabContent>
+              <p>Customer List goes here</p>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Solutions">
+            <ng-template ngbTabContent>
+              <p>Solutions List goes here</p>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Deals">
+            <ng-template ngbTabContent>
+              <p>Deals list goes here.</p>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+        </div>  
+    </div><!--/row-->
+
+    <script>
+var uploadField = document.getElementById("file");
+
+uploadField.onchange = function() {
+    if(this.files[0].size > 1000){
+       alert("File is too big!");
+       this.value = "";
+    };
+};
+      </script>

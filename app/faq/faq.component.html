@@ -1,0 +1,150 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h2 class="component-header"><fa-icon [icon]="['fas', 'question']"></fa-icon> Frequestly Asked Questions</h2>
+</div>
+<p>The below is a list of all FAQs for our platforms.</p>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+         <h4 class="d-flex justify-content-between align-items-right mb-3">
+           <span class="text-muted">Total FAQs &nbsp;  </span> 
+           <span class="badge badge-secondary badge-pill">  {{faqs.length}}</span>
+         </h4>
+<div class="btn-toolbar mb-2 mb-md-0">
+  <div class="btn-group mr-2">
+    <input [(ngModel)]="searchText" placeholder="Search.." class="advancedSearchTextbox form-control form-control-dark w-100">
+    <button class="btn btn-sm btn-outline-secondary" (click)=' searchText = "";'>Clear</button>
+    <button class="btn btn-sm btn-outline-secondary">Export</button>
+  </div>
+</div>
+</div>
+<!--    <div class="row-fluid">
+       <div class="col-md-12 order-md-1">
+
+         <ul class="list-group mb-12" >
+           <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let faq of faqs | grdFilter: {id: searchText, faqQuestion: searchText, faqAnswer: searchText, faqCateogory: searchText}; index as i; trackBy: id">
+             <div class="col-md-1 col-sm-1">
+               <h5>{{faq.id}}</h5>
+               <hr>
+               <small>Category - {{faq.faqCategory}}</small>
+              </div> 
+                 <div class="col-md-12 col-sm-12 h5">
+                   <fa-icon [icon]="['fas', 'question']" class="component-header"></fa-icon> Question: {{faq.faqQuestion}}
+                   <hr>
+                   <fa-icon [icon]="['fas', 'check']" class="true"></fa-icon> Answer: {{faq.faqAnswer}}
+                 </div>
+           </li>
+         </ul>
+     </div>
+   </div> -->
+
+   <div class="row-fluid">
+       <div class="col-md-12 order-md-1">
+        <ngb-accordion [closeOthers]="true">
+          <ngb-panel id="{{faq.id}}" *ngFor="let faq of faqs | grdFilter: {id: searchText, faqQuestion: searchText, faqAnswer: searchText, faqCateogory: searchText}; index as i; trackBy: id" > 
+              <ng-template ngbPanelTitle>
+                <span class="h5"><b> {{faq.faqQuestion}} <fa-icon [icon]="['fas', 'question']" class="true"></fa-icon></b></span>
+              </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="col-md-12">
+              <span class="h5"><b><fa-icon [icon]="['fas', 'check']" [ngClass]="{'true': faq.faqPositive ==true, 'false':faq.faqPositive ==false }"></fa-icon>  {{faq.faqAnswer}}</b></span>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+   </div>
+ <form>
+<div class="container" style="padding-top: 50px;">
+  <wizard navBarLocation='top' navBarLayout='large-empty-symbols'>
+    <wizard-step stepTitle="Catalog Requirements" navigationSymbol="1">
+      <h3>Catalog Requirements</h3>
+        <br>
+      <label>The customer's catalog will consist of</label>
+      <small class="form-text text-muted"> Pick the answer that best completes the statement</small>
+ 
+        <p>
+          <label>
+              <input class="btn btn-outline-primary" type="radio" name="editList" value="always"/> Ingram Micro Cloud catalog of services only
+          </label>
+        </p>
+        <p>
+          <label>
+              <input class="btn" type="radio" name="editList" value="always"/> Customer catalog of services only
+          </label>
+        </p>
+        <p>
+          <label>
+              <input class="btn" type="radio" name="editList" value="always"/> A hybrid of Customer & Ingram Micro Cloud services
+          </label>
+        </p>
+      <br>
+      <div class="col-md-12">
+        <button type="button" class="btn btn-outline-primary btn-sm my-2 my-sm-0" nextStep>Next</button>
+      </div>
+    </wizard-step>
+    <wizard-step stepTitle="Integration Requirements" navigationSymbol="2">
+      <h3>Integration Requiremetns</h3>
+
+ <!-- Small switch -->
+<div class="form-group">  
+  <span class="switch switch-sm">
+    <input type="checkbox" class="switch" id="switch-sm">
+    <label for="switch-sm">Small switch</label>
+  </span>
+</div>
+
+<!-- Normal switch -->
+<div class="form-group">
+  <span class="switch">
+    <input type="checkbox" class="switch" id="switch-normal">
+    <label for="switch-normal">Normal switch</label>
+  </span>
+</div>
+
+<!-- Large switch -->
+<div class="form-group">
+  <span class="switch switch-lg">
+    <input type="checkbox" class="switch" id="switch-lg">
+    <label for="switch-lg">Large switch</label>
+  </span>
+</div>
+      
+      <br>
+      <div class="col-md-12">
+        <button type="button" class="btn btn-outline-primary btn-sm my-2 my-sm-0" previousStep style="margin: 10px;">Previous</button>
+        <button type="button" class="btn btn-outline-primary btn-sm my-2 my-sm-0" nextStep>Next</button>
+      </div>
+    </wizard-step>
+    <wizard-step stepTitle="Support Requirements" navigationSymbol="3">
+      <h3>Support Requiremetns</h3>
+      <p>
+        Step 3 of 5
+        </p>
+      <br>
+       <div class="col-md-12">
+        <button type="button" class="btn btn-outline-primary btn-sm my-2 my-sm-0" previousStep style="margin: 10px;">Previous</button>
+        <button type="button" class="btn btn-outline-primary btn-sm my-2 my-sm-0" nextStep>Next</button>
+      </div>
+    </wizard-step>
+    <wizard-step stepTitle="Review & Finalize" navigationSymbol="4">
+      <h3>Review/Finalize</h3>
+      <p>
+        Step 3 of 5
+        </p>
+      <br>
+       <div class="col-md-12">
+        <button type="button" class="btn btn-outline-primary btn-sm my-2 my-sm-0" previousStep style="margin: 10px;">Previous</button>
+        <button type="button" class="btn btn-outline-primary btn-sm my-2 my-sm-0" nextStep>Next</button>
+      </div>
+    </wizard-step>
+    <wizard-completion-step stepTitle="Recommendation" navigationSymbol="5">
+    <h3>Catalog Requiremetns</h3>
+      <p>
+        Step 5 of 5
+        </p>
+      <br>
+      <button type="button" (click)="finishFunction()" class="btn btn-outline-success btn-sm my-2 my-sm-0" >Finish</button>
+      </wizard-completion-step>
+  </wizard>
+</div>
+</form>
+   

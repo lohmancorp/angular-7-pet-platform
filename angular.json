@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "demo": {
+      "architect": {
+        "build": {
+          "options": {
+            "styles": [
+              "css/bootstrap.min.css",
+              "app/_content/app.less",
+              "app/_content/modal.less",
+              "app/_content/wizard.less"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

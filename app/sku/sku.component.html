@@ -1,0 +1,177 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h2 class="component-header"><fa-icon [icon]="['fas', 'truck']"></fa-icon> Catalog Administration</h2>
+</div>
+<p>This page can only be accessed by SKU administrators.</p>
+
+<div class="container">
+<div class="col-md-12 row">
+  <div class="card-deck mb-4 text-center">
+
+    <div class="card mb-4 box-shadow">
+      <div class="card-header component-header">
+        <h4 class="my-0 font-weight-normal component-header">Offers Management</h4>
+      </div>
+      <img class="card-img-top" src="https://i.ibb.co/1XwTK2w/products-tile.png" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title component-header">Offer Database</h5>
+        <p class="card-text">Use offer management to combine multiple SKUs together for easy discovery and selection.</p>
+      </div>
+      <div class="card-footer text-muted">
+        <button class="btn-outline-primary btn-sm" ngbPopover="Use this option to add a new offer." triggers="mouseenter:mouseleave" popoverTitle="Add Offer" placement="bottom" ><fa-icon [icon]="['fas', 'plus']"></fa-icon></button><span style="padding:10px;"></span>
+        <button class="btn-outline-primary btn-sm" ngbPopover="Use this option to view all offers or to edit an existing offer." triggers="mouseenter:mouseleave" popoverTitle="View Offers" placement="bottom" ><fa-icon [icon]="['fas', 'eye']"></fa-icon></button><span style="padding:10px;"></span>
+      </div>
+    </div>
+    <div class="card mb-4 box-shadow">
+      <div class="card-header component-header card-footer">
+        <h4 class="my-0 font-weight-normal component-header">SKU Management</h4>
+      </div>
+      <img class="card-img-top" src="https://i.ibb.co/sQ0SkhC/sku-tile.png" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title component-header">SKU Database</h5>
+        <p class="card-text">SKUs are the individual components that go into an offer.</p>
+      </div>
+      <div class="card-footer text-muted">
+        <button class="btn-outline-primary btn-sm" ngbPopover="Use this option to add a new SKU." triggers="mouseenter:mouseleave" popoverTitle="Add Offer" placement="bottom" ><fa-icon [icon]="['fas', 'plus']"></fa-icon></button><span style="padding:10px;"></span>
+        <button class="btn-outline-primary btn-sm" ngbPopover="Use this option to view all SKUs or to edit an existing offer." triggers="mouseenter:mouseleave" popoverTitle="View Offers" placement="bottom" ><fa-icon [icon]="['fas', 'eye']"></fa-icon></button><span style="padding:10px;"></span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+<h1 class="h2">All SKUs</h1>
+<div class="btn-toolbar mb-2 mb-md-0">
+  <div class="btn-group mr-2">
+    <input [(ngModel)]="searchText" placeholder="Search.." class="advancedSearchTextbox form-control w-100">
+    <button class="btn btn-sm btn-outline-secondary" (click)=' searchText = "";'>Clear</button>
+    <button class="btn btn-sm btn-outline-secondary">Import</button>
+    <button class="btn btn-sm btn-outline-secondary">Export</button>
+  </div>
+</div>
+</div>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th align="left">#</th>
+          <th align="left">MPNID</th>
+          <th align="left">SKU</th>
+          <th align="left">Name</th>
+          <th align="left">Vendor</th>
+          <th align="left">Category</th>
+          <th align="left">Term</th>
+          <th align="left">IM Cost</th>
+          <th align="left">VAR Cost</th>
+          <th align="left">Details</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor="let sku of skus | grdFilter: {mpnID: searchText, skuID:searchText,  skuName: searchText}; index as i; trackBy: id">
+          <td align="left" >{{sku.id}}</td>
+          <td align="left">{{sku.mpnID}}</td>
+          <td align="left">{{sku.skuID}}</td>
+          <td align="left">{{sku.skuName}}</td>
+          <td align="left">{{sku.skuVendor}}</td>
+          <td align="left">{{sku.skuCategory}}</td>
+          <td align="left">{{sku.skuBilling}}</td>
+          <td align="left">{{sku.skuVendorCost | currency}}</td>
+          <td align="left">{{sku.skuPrice | currency}}</td>
+          <td align="left"><button type="button" class="btn btn-primary btn-sm" (click)='openModal("skuDetailModal"); searchText = sku.skuID;'>details</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+<jw-modal id="skuDetailModal" class="modal modal-fade"> 
+  <h2>Item Details</h2> 
+  <hr>
+<div *ngFor="let sku of skus | grdFilter: {skuID:searchText}">
+  <div class="row">
+    <div class="col-md-4">
+      <ul class="clean-list">
+        <li><b>Item Name:</b> {{sku.skuName}}</li>
+        <li><b>Item Vendor:</b> {{sku.skuVendor}}</li>
+        <li><b>Item Category:</b> {{sku.skuCategory}}</li>
+      </ul>  
+  
+    </div>  
+    <div class="col-md-4">
+      <ul class="clean-list">
+        
+        <li><b>SKU ID:</b> {{sku.skuID}}</li>
+        <li><b>MPN ID:</b> {{sku.mpnID}}</li>
+      </ul>  
+    </div>  
+    <div class="col-md-4">
+      <ul class="clean-list">
+        <li><b>Term Length:</b> {{sku.skuTerm}}</li>
+        <li><b>Billing Frequency:</b> {{sku.skuBilling}}</li>
+        <li><b>UOM:</b> {{sku.skuUnit}}</li>
+        <li><b>Maximum:</b> {{sku.skuMaximum}}</li>
+      </ul>  
+    </div>   
+  </div> 
+  <div class="row">
+    <div class="col-md-12" style="padding-left: 50px; padding-right: 50px;">
+      <hr>
+    </div>  
+  </div> 
+  <div class="row" style="padding-left: 40px;">
+    <div class="col-md-12" >
+      <b>Description:</b> {{sku.skuDescription}} 
+      <p>
+    </div>  
+  </div>   
+  <div class="row" style="padding-left: 40px;">
+    <table class="table table-striped table-sm" >
+      <thead>
+        <tr>
+          <th align="left" style="padding-left: 15px;"><h4>Ingram Pricing Info</h4></th>
+          <th align="left" style="padding-left: 40px;"></th>
+          <th align="left" style="padding-left: 40px; border-left: 1px solid #cdd0d4;"><h4>VAR Pricing Info</h4></th>
+          <th align="left" style="padding-left: 40px;"></th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor="let sku of skus | grdFilter: {mpnID: searchText, skuID:searchText,  skuName: searchText}; index as i; trackBy: id">
+          <td align="left" style="padding-left: 20px;" ><b>Vendor List Price</b></td>
+          <td align="left" style="padding-left: 40px;" ><input value="{{sku.skuVendorListPrice |currency}}" style="border: 2px solid #2B4EF8; border-radius: 4px;"></td>
+          <td align="left" style="padding-left: 40px; border-left: 1px solid #cdd0d4;"><b>VAR Margin</b></td>
+          <td align="left" style="padding-left: 40px;"><input value="{{sku.skuVARMargin /100 | percent:'1.1'}}" style="border: 2px solid #2B4EF8; border-radius: 4px;"></td>
+        </tr>
+        <tr *ngFor="let sku of skus | grdFilter: {mpnID: searchText, skuID:searchText,  skuName: searchText}; index as i; trackBy: id">
+          <td align="left" style="padding-left: 20px;" ><b>Vendor Cost</b></td>
+          <td align="left" style="padding-left: 40px;" ><input value="{{sku.skuVendorCost |currency}}" style="border: 2px solid #2B4EF8; border-radius: 4px;"></td>
+          <td align="left" style="padding-left: 40px; border-left: 1px solid #cdd0d4;"><b>VAR Cost</b></td>
+          <td align="left" style="padding-left: 40px;">{{sku.skuVendorListPrice - (sku.skuVendorListPrice * (sku.skuVARMargin / 100)) | currency}}</td>
+        </tr>
+        <tr *ngFor="let sku of skus | grdFilter: {mpnID: searchText, skuID:searchText,  skuName: searchText}; index as i; trackBy: id">
+          <td align="left" style="padding-left: 20px;" ><b>Provider Profit</b></td>
+          <td align="left" style="padding-left: 40px;" >
+            {{sku.skuVendorListPrice - (sku.skuVendorListPrice * (sku.skuVARMargin / 100)) - sku.skuVendorCost | currency}}
+          </td>
+          <td align="left" style="padding-left: 40px; border-left: 1px solid #cdd0d4;"><b>VAR Price</b></td>
+          <td align="left" style="padding-left: 40px;">{{sku.skuVendorListPrice | currency}}</td>
+        </tr>
+        <tr *ngFor="let sku of skus | grdFilter: {mpnID: searchText, skuID:searchText,  skuName: searchText}; index as i; trackBy: id">
+          <td align="left" style="padding-left: 20px;" ><b>Provider Margin</b></td>
+          <td align="left" style="padding-left: 40px;" ></td>
+          <td align="left" style="padding-left: 40px; border-left: 1px solid #cdd0d4;"><b>VAR Profit</b></td>
+          <td align="left" style="padding-left: 40px;">{{sku.skuVendorListPrice -  (sku.skuVendorListPrice - (sku.skuVendorListPrice * (sku.skuVARMargin / 100))) | currency}}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  <div class="row">
+    <div class="col-md-12" style="padding-left: 50px; padding-right: 50px;">
+      <hr>
+    </div>  
+  </div> 
+ </div> 
+ <br>
+    <button (click)='closeModal("skuDetailModal"); searchText = "";' class="btn btn-primary btn-lg">
+      close
+    </button>
+</jw-modal>

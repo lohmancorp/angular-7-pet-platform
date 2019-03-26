@@ -1,0 +1,100 @@
+
+
+<!doctype html>
+
+    <header>
+      <nav class="navbar navbar-expand-md fixed-top">
+        <a class="navbar" href="/home"><img src="https://pet.odindemo.com/img/panel-logo.png" style="max-height: 25px"></a>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active" >
+              <a class="nav-link active" routerLink="/home" *ngIf="currentUser">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" *ngIf="currentUser">
+              <div ngbDropdown class="d-inline-block" >
+                <a class="nav-item nav-link component-header" id="infoDropDown" ngbDropdownToggle><span class="component-header"> <fa-icon [icon]="['fas', 'shopping-basket']" ></fa-icon>  Catalog </span></a>
+                <div class="dropdown-menu megamenu" ngbDropdownMenu aria-labelledby="infoDropDown">
+                  <button class="dropdown-item" routerLink="/catalog" *ngIf="currentUser"><fa-icon class="component-header" [icon]="['fas', 'shopping-cart']" ></fa-icon> Marketplace</button>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item" routerLink="/catalog" *ngIf="currentUser"><fa-icon class="component-header" [icon]="['fas', 'rss']" ></fa-icon> Connect</button>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item" routerLink="/catalog" *ngIf="currentUser"><fa-icon class="component-header" [icon]="['fas', 'server']"></fa-icon> PaaS</button>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item" *ngIf="currentUser">
+              <div ngbDropdown class="d-inline-block" >
+                <a class="nav-item nav-link component-header" id="infoDropDown" ngbDropdownToggle><span class="component-header"> <fa-icon [icon]="['fas', 'info-circle']" ></fa-icon>  Information </span></a>
+                <div class="dropdown-menu megamenu" ngbDropdownMenu aria-labelledby="infoDropDown">
+                  <button class="dropdown-item" routerLink="/features" *ngIf="currentUser"><fa-icon class="component-header" [icon]="['fas', 'bolt']" ></fa-icon> Features</button>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item" routerLink="/faqs" *ngIf="currentUser"><fa-icon class="component-header" [icon]="['fas', 'question']" ></fa-icon> FAQs</button>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item" *ngIf="currentUser">
+              <div ngbDropdown class="d-inline-block" >
+                <a class="nav-item nav-link component-header" id="infoDropDown" ngbDropdownToggle><span class="component-header"> <fa-icon [icon]="['fas', 'user']" ></fa-icon>  Profile </span></a>
+                <div class="dropdown-menu megamenu" ngbDropdownMenu aria-labelledby="infoDropDown">
+                  <button class="dropdown-item" routerLink="/profile" *ngIf="currentUser"><fa-icon class="component-header" [icon]="['fas', 'user']" ></fa-icon> Profile</button>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item" routerLink="/settings" *ngIf="currentUser"><fa-icon class="component-header" [icon]="['fas', 'cogs']" ></fa-icon> App Settings</button>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item" routerLink="/mydeals" *ngIf="currentUser"><fa-icon class="component-header" [icon]="['fas', 'lightbulb']"></fa-icon> My Deals</button>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item" *ngIf="isSkuAdmin || isAdmin">
+              <div ngbDropdown class="d-inline-block">
+                <a class="nav-item nav-link active" id="adminDropDown" ngbDropdownToggle><span class="component-header"><fa-icon [icon]="['fas', 'lock']" ></fa-icon>  Administration </span></a>
+                <div class="dropdown-menu megamenu" ngbDropdownMenu aria-labelledby="adminDropDown">
+                  <button class="dropdown-item" routerLink="/sku" *ngIf="isSkuAdmin || isAdmin" ><fa-icon class="component-header" [icon]="['fas', 'truck']" ></fa-icon> Catalog Admin</button>
+                  <div class="dropdown-divider" *ngIf="isAdmin"></div>
+                  <button class="dropdown-item" routerLink="/admin" *ngIf="isAdmin"><fa-icon class="component-header" [icon]="['fas', 'lock']" ></fa-icon> App Admin</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0" *ngIf="currentUser">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary btn-sm my-2 my-sm-0" type="submit" (click)="logout()">logout</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+
+
+    <div class="page-container">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-white sidebar" *ngIf="currentUser">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column" style="padding-top: 48px;">
+              <li class="nav-item nav-link" style="padding-top:25px;">
+                <a class="nav-link" routerLink="/profile">
+                  <img class="rounded-circle" src="{{currentUser.image}}" alt="Avatar" width="50" height="50"> <span> &nbsp; </span>
+                  <b>{{currentUser.firstName}} {{currentUser.lastName}}</b>
+                  </a>
+                  <hr>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" routerLink="/home">
+                  <fa-icon [icon]="['fas', 'home']"></fa-icon>
+                  Home <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/catalog">
+                  <fa-icon [icon]="['fas', 'shopping-basket']"></fa-icon>
+                  Catalog <span class="sr-only">(current)</span>
+                </a>
+              </li>      
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 main-content">
+          <router-outlet></router-outlet>
+        </main>
+      </div>
+    </div>
+

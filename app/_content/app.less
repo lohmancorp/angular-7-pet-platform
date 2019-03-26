@@ -1,0 +1,377 @@
+/* EXAMPLE STYLES
+-------------------------------*/
+
+@color_1: #333;
+@color_2: #999;
+@color_3: #007bff;
+@color_4: inherit;
+@color_5: #fff;
+@background_color_1: #FFFFFF;
+@background_color_2: rgba(255, 255, 255, .1);
+@border_color_1: #1894FC;
+@border_color_2: transparent;
+
+/*
+ * Sidebar
+ */
+/*
+ * Navbar
+ */
+/*
+ * Utilities
+ */
+body {
+	//font-size: .875rem;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+.feather {
+	width: 16px;
+	height: 16px;
+	vertical-align: text-bottom;
+}
+.sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	padding: 0;
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+	.nav-link {
+		font-weight: 500;
+		color: @color_1;
+		.feather {
+			margin-right: 4px;
+			color: @color_2;
+		}
+		&:hover {
+			.feather {
+				color: @color_4;
+			}
+		}
+	}
+	.nav-link.active {
+		color: @color_3;
+		.feather {
+			color: @color_4;
+		}
+	}
+}
+.sidebar-sticky {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 48px;
+	height: calc(100vh - 48px);
+	padding-top: .5rem;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.sidebar-heading {
+	//font-size: .75rem;
+	text-transform: uppercase;
+}
+.navbar-brand {
+	padding-top: .75rem;
+	padding-bottom: .75rem;
+	//font-size: 1rem;
+	background-color: @background_color_1;
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+.navbar {
+  background-color: @background_color_1;
+	.form-control {
+		padding: .75rem 1rem;
+		border-width: 0;
+		border-radius: 0;
+	}
+}
+
+.navbar-nav{
+  background-color: @background_color_1;
+  color: @color_1 !important;
+
+}
+.form-control-dark {
+	color: @color_1;
+	background-color: @background_color_2;
+	border-color: @border_color_1;
+	&:focus {
+		border-color: @border_color_2;
+		box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+	}
+}
+.border-top {
+	border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+	border-bottom: 1px solid #e5e5e5;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+/* Carousel base class */
+/* Since positioning the image, we need to help out the caption */
+/* Declare heights because of positioning of img element */
+/* MARKETING CONTENT
+-------------------------------------------------- */
+/* Center align the text within the three columns below the carousel */
+/* Featurettes
+------------------------- */
+/* Thin out the marketing headings */
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+/* Bump up size of carousel content */
+.carousel {
+	margin-bottom: 4rem;
+}
+.carousel-caption {
+	bottom: 3rem;
+	z-index: 10;
+}
+.carousel-item {
+	height: 32rem;
+	background-color: @background_color_1;
+	>img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		min-width: 100%;
+		height: 32rem;
+	}
+}
+.marketing {
+	.col-lg-4 {
+		margin-bottom: 1.5rem;
+		text-align: center;
+		p {
+			margin-right: .75rem;
+			margin-left: .75rem;
+		}
+	}
+	h2 {
+		font-weight: 400;
+	}
+}
+.featurette-divider {
+	margin: 5rem 0;
+}
+.featurette-heading {
+	font-weight: 300;
+	line-height: 1;
+	letter-spacing: -.05rem;
+}
+@media (min-width: 40em) {
+	.carousel-caption {
+		p {
+			margin-bottom: 1.25rem;
+			font-size: 1.25rem;
+			line-height: 1.4;
+		}
+	}
+	.featurette-heading {
+		font-size: 50px;
+	}
+}
+@media (min-width: 62em) {
+	.featurette-heading {
+		margin-top: 7rem;
+	}
+}
+
+
+.logout {
+  color: #000000 !important;
+}
+
+.clean-list {
+  list-style-type: none;
+}
+
+.true {
+  color: #00E500;
+}
+
+.false {
+  color: #FF0000;
+}
+
+.main-content {
+  margin-top: 91px;
+}
+
+.component-header {
+  color: #1894FC;
+}
+
+
+.card-header {
+	@extend .h4; 
+  margin-bottom: 0;
+  color: @color_1;
+	background-color: @background_color_1;
+}
+.card-body {
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+}
+
+
+// Wizard
+
+wizard-step {
+  min-height: 400px;
+}
+
+#wz-color-current {
+  border-color:#007bff;
+}
+
+// color definitions
+@wz-color-default: #E6E6E6;
+@wz-color-current: #007bff;
+@wz-color-done: #339933;
+@wz-color-optional: #38ef38;
+@wz-color-editing: #FF0000;
+
+.switch {
+    font-size: 1rem;
+    position: relative;
+}
+
+.switch input {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    background: none;
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    overflow: hidden;
+    padding: 0;
+}
+
+.switch input + label {
+    position: relative;
+    min-width: calc(calc(2.375rem * .8) * 2);
+    border-radius: calc(2.375rem * .8);
+    height: calc(2.375rem * .8);
+    line-height: calc(2.375rem * .8);
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    vertical-align: middle;
+    text-indent: calc(calc(calc(2.375rem * .8) * 2) + .5rem);
+}
+
+.switch input + label::before,
+.switch input + label::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(calc(2.375rem * .8) * 2);
+    bottom: 0;
+    display: block;
+}
+
+.switch input + label::before {
+    right: 0;
+    background-color: #dee2e6;
+    border-radius: calc(2.375rem * .8);
+    transition: 0.2s all;
+}
+
+.switch input + label::after {
+    top: 2px;
+    left: 2px;
+    width: calc(calc(2.375rem * .8) - calc(2px * 2));
+    height: calc(calc(2.375rem * .8) - calc(2px * 2));
+    border-radius: 50%;
+    background-color: white;
+    transition: 0.2s all;
+}
+
+.switch input:checked + label::before {
+    background-color: #08d;
+}
+
+.switch input:checked + label::after {
+    margin-left: calc(2.375rem * .8);
+}
+
+.switch input:focus + label::before {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 136, 221, 0.25);
+}
+
+.switch input:disabled + label {
+    color: #868e96;
+    cursor: not-allowed;
+}
+
+.switch input:disabled + label::before {
+    background-color: #e9ecef;
+}
+
+.switch.switch-sm {
+    font-size: 0.875rem;
+}
+
+.switch.switch-sm input + label {
+    min-width: calc(calc(1.9375rem * .8) * 2);
+    height: calc(1.9375rem * .8);
+    line-height: calc(1.9375rem * .8);
+    text-indent: calc(calc(calc(1.9375rem * .8) * 2) + .5rem);
+}
+
+.switch.switch-sm input + label::before {
+    width: calc(calc(1.9375rem * .8) * 2);
+}
+
+.switch.switch-sm input + label::after {
+    width: calc(calc(1.9375rem * .8) - calc(2px * 2));
+    height: calc(calc(1.9375rem * .8) - calc(2px * 2));
+}
+
+.switch.switch-sm input:checked + label::after {
+    margin-left: calc(1.9375rem * .8);
+}
+
+.switch.switch-lg {
+    font-size: 1.25rem;
+}
+
+.switch.switch-lg input + label {
+    min-width: calc(calc(3rem * .8) * 2);
+    height: calc(3rem * .8);
+    line-height: calc(3rem * .8);
+    text-indent: calc(calc(calc(3rem * .8) * 2) + .5rem);
+}
+
+.switch.switch-lg input + label::before {
+    width: calc(calc(3rem * .8) * 2);
+}
+
+.switch.switch-lg input + label::after {
+    width: calc(calc(3rem * .8) - calc(2px * 2));
+    height: calc(calc(3rem * .8) - calc(2px * 2));
+}
+
+.switch.switch-lg input:checked + label::after {
+    margin-left: calc(3rem * .8);
+}
+
+.switch + .switch {
+    margin-left: 1rem;
+}
+
+body {
+    padding: 1rem;
+}
+
+.dropdown-menu {
+    margin-top: .75rem;
+}
+

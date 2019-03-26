@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h2 class="component-header"><fa-icon [icon]="['fas', 'bolt']"></fa-icon> Features</h2>
+</div>
+<p>The below is a feature comparison chart of our three main platform offerings.</p>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+<h1 class="h2">All features</h1>
+<div class="btn-toolbar mb-2 mb-md-0">
+  <div class="btn-group mr-2">
+    <input [(ngModel)]="searchText" placeholder="Search.." class="advancedSearchTextbox form-control form-control-dark w-100">
+    <button class="btn btn-sm btn-outline-secondary" (click)=' searchText = "";'>Clear</button>
+    <button class="btn btn-sm btn-outline-secondary">Export</button>
+  </div>
+</div>
+</div>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th align="center">#</th>
+          <th align="left">Feature Name</th>
+          <th align="left">Feature Description</th>
+          <th align="left">CMP</th>
+          <th align="left">Connect</th>
+          <th align="left">PaaS</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor="let feature of features | grdFilter: {id: searchText, featureName: searchText, featureDescription:searchText}; index as i; trackBy: id">
+          <td align="center" >{{feature.id}}</td>
+          <td align="left">{{feature.featureName}}</td>
+          <td align="left">{{feature.featureDescription}}</td>
+          <td align="left"><fa-icon [icon]="['fas', 'check']" class="true" *ngIf="feature.cmp"></fa-icon> <fa-icon [icon]="['fas', 'times']" class="false" *ngIf="!feature.cmp"></fa-icon></td>
+          <td align="left"><fa-icon [icon]="['fas', 'check']" class="true" *ngIf="feature.connect"></fa-icon> <fa-icon [icon]="['fas', 'times']" class="false" *ngIf="!feature.connect"></fa-icon></td>
+          <td align="left"><fa-icon [icon]="['fas', 'check']" class="true" *ngIf="feature.paas"></fa-icon> <fa-icon [icon]="['fas', 'times']" class="false" *ngIf="!feature.paas"></fa-icon></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

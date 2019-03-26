@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h2 class="component-header"><fa-icon [icon]="['fas', 'lock']"></fa-icon> App Administrators</h2>
+</div>
+<p>This page can only be accessed by administrators.</p>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+<h1 class="h2">All Users</h1>
+<div class="btn-toolbar mb-2 mb-md-0">
+  <div class="btn-group mr-2">
+    <input [(ngModel)]="searchText" placeholder="Search.." class="advancedSearchTextbox form-control form-control-dark w-100">
+    <button class="btn btn-sm btn-outline-secondary" (click)=' searchText = "";'>Clear</button>
+    <button class="btn btn-sm btn-outline-secondary">Export</button>
+  </div>
+</div>
+</div>
+<div>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th align="left">#</th>
+          <th align="left">First Name</th>
+          <th align="left">Last Name</th>
+          <th align="left">Role</th>
+          <th align="left">Status</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor="let user of users | grdFilter: {id: searchText, firstName:searchText,  lastName: searchText, role: searchText}; index as i; trackBy: id">
+          <td align="left" >{{user.id}}</td>
+          <td align="left">{{user.firstName}}</td>
+          <td align="left">{{user.lastName}}</td>
+          <td align="left">{{user.role}}</td>
+          <td align="left"><fa-icon [icon]="['fas', 'check']" class="true" *ngIf='user.status==="active"'></fa-icon> <fa-icon [icon]="['fas', 'times']" class="false" *ngIf='user.status==="inactive"'></fa-icon></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
